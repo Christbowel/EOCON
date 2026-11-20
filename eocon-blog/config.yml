@@ -1,0 +1,13 @@
+site_name: EOCON Blog
+tagline: EyesOpen Conference 2026 -- blog de la conf
+per_page: 10
+upload_dir: uploads
+secret_key: eocon-blog-dev-key-change-me
+admin_token: eo-admin-7q3w9p
+allowed_extensions:
+  - jpg
+  - jpeg
+  - png
+  - gif
+  - txt
+  - pdf

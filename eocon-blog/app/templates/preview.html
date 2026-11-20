@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Content Preview | EOCON Blog{% endblock %}
+{% block bodyclass %}page-preview{% endblock %}
+{% block content %}
+<div class="preview-wrap">
+    <h1>Content Preview</h1>
+    <p class="subtitle">Draft and preview article content before publishing. Dynamic expressions between double braces are evaluated server-side.</p>
+
+    <div class="preview-form">
+        <label class="field-label">Article body</label>
+        <textarea id="body" placeholder="The EyesOpenCTF 2026 brings together teams from across 15+ countries for a 48-hour challenge spanning 8 disciplines. This year's edition features over 40 challenges worth more than 10,000 points.
+
+Registration is open at eyesopensecurity.com. Teams of 1-2 players can sign up and receive operator credentials before the competition window opens."></textarea>
+        <div class="form-actions">
+            <button onclick="runPreview()">Preview</button>
+            <span class="hint">Content is rendered exactly as it will appear in the published article.</span>
+        </div>
+    </div>
+
+    <div class="preview-output" id="output-wrap" style="display:none">
+        <label class="field-label">Rendered output</label>
+        <div class="preview-result visible" id="result"></div>
+    </div>
+</div>
+
+<script>
+function runPreview() {
+    var body = document.getElementById("body").value;
+    var box = document.getElementById("result");
+    var wrap = document.getElementById("output-wrap");
+    box.textContent = "Rendering...";
+    wrap.style.display = "block";
+
+    fetch("/api/preview", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({body: body})
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+        box.textContent = data.rendered || data.error || "No output";
+    })
+    .catch(function(err) {
+        box.textContent = "Error: " + err;
+    });
+}
+</script>
+{% endblock %}

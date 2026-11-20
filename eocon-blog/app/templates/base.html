@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}EOCON Blog{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="{% block bodyclass %}{% endblock %}">
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none">
+                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="#00FF9D"/>
+                </svg>
+                <span>EOCON</span> Blog
+            </a>
+            <nav>
+                <a href="/">Posts</a>
+                <a href="/preview">Preview</a>
+                <a href="/feed/rss">RSS</a>
+            </nav>
+        </div>
+    </header>
+    {% block hero %}{% endblock %}
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        &copy; 2026 <span class="accent">EyesOpen Security Association</span> &middot; #EOCON #SecureTheFuture
+    </footer>
+</body>
+</html>

@@ -1,0 +1,7 @@
+services:
+  blog:
+    build: .
+    image: eocon-blog:lab
+    ports:
+      - "5000:5000"
+    restart: unless-stopped

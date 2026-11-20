@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}EOCON Blog | Secure the Future{% endblock %}
+
+{% block hero %}
+<section class="hero">
+    <div class="container">
+        <h1>EOCON 2026 <em>/ Secure the Future</em></h1>
+        <p>7th edition. Bilingual cybersecurity convention at Hotel Onomo, Douala, Cameroon. On-site and online.</p>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section-label">Latest posts</div>
+    <div class="grid">
+        {% for post in posts %}
+        <article class="card">
+            {% if post.cover_image %}
+            <img class="card-img" src="{{ url_for('static', filename=post.cover_image) }}" alt="">
+            {% endif %}
+            <div class="card-body">
+                {% if post.tags %}
+                <div class="tags">
+                    {% for tag in post.tags %}
+                    <span class="tag">{{ tag.name }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <h2><a href="/post/{{ post.id }}">{{ post.title }}</a></h2>
+                <p class="excerpt">{{ post.body[:200] }}</p>
+                <div class="card-meta">
+                    <span>{{ post.author_name }}</span>
+                    <span class="dot">&middot;</span>
+                    <span>{{ post.created_at[:10] }}</span>
+                </div>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

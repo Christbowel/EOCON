@@ -1,0 +1,34 @@
+# base CodeQL (regenerable, lourd)
+eocon-db/
+.codeql/
+*.bqrs
+*.sarif
+
+# sortie AFL + binaires fuzz
+findings/
+*.cur_input
+fuzz
+afl-bin
+minicalc
+*.o
+
+# analyse generee
+spread.csv
+eval.csv
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+instance/
+
+# bases, dumps, images
+*.db
+*.sqlite3
+*.tar
+
+# divers
+.env
+.DS_Store
+node_modules/

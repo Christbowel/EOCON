@@ -1,0 +1,6 @@
+rules:
+  - id: eocon-eval
+    languages: [python]
+    message: Appel a eval - sink dangereux
+    severity: ERROR
+    pattern: eval(...)

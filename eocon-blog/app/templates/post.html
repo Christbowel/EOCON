@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }} | EOCON Blog{% endblock %}
+{% block content %}
+<div class="article-header">
+    {% if post.cover_image %}
+    <img class="cover" src="{{ url_for('static', filename=post.cover_image) }}" alt="">
+    {% endif %}
+    <h1>{{ post.title }}</h1>
+    <div class="meta">
+        <span>{{ post.author_name }}</span>
+        <span class="dot">&middot;</span>
+        <span>{{ post.created_at[:10] }}</span>
+    </div>
+    {% if tags %}
+    <div class="tags">
+        {% for tag in tags %}
+        <span class="tag">{{ tag.name }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+<div class="article-content">
+    <div class="article-body">{{ post.body }}</div>
+</div>
+
+<div class="comments-section">
+    <h2>Comments ({{ comments|length }})</h2>
+    {% for c in comments %}
+    <div class="comment">
+        <div class="author">{{ c.author_name }}</div>
+        <div class="body">{{ c.body }}</div>
+    </div>
+    {% endfor %}
+    {% if not comments %}
+    <p class="empty-state">No comments yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+rules:
+  - id: eocon-taint-eval
+    mode: taint
+    languages: [python]
+    message: Entree utilisateur atteignant eval
+    severity: ERROR
+    pattern-sources:
+      - pattern: request.get_json()
+    pattern-sinks:
+      - pattern: eval(...)

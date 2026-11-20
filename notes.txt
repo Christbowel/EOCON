@@ -1,0 +1,24 @@
+Trufflehog : recherche de secret 
+
+-------CODEQL---------------
+
+codeql database create eocon-db --language=python --source-root eocon-blog --overwrite
+
+codeql database analyze eocon-db codeql/python-queries:Security/CWE-094/CodeInjection.ql --format=csv --output=eval.csv
+
+lister les requetes du pack python: codeql resolve queries codeql/python-queries
+
+codeql database analyze eocon-db \
+  codeql/python-queries:codeql-suites/python-security-extended.qls \
+  --format=csv --output=all.csv   : lot entier
+
+
+codeql database analyze ../eocon-db find_spread.ql --format=csv --output=spread.csv
+codeql database analyze ../eocon-db find_taint.ql --format=sarifv2.1.0 --output=taint.sarif  : fichier sur lequel appliquer show path
+
+
+-------SEMGREP--------------------
+
+semgrep -config auto/[YAML] eocon-blog
+
+

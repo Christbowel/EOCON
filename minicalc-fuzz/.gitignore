@@ -1,0 +1,13 @@
+# binaires compiles
+fuzz
+afl-bin
+minicalc
+*.o
+
+# sortie AFL
+findings/
+*.cur_input
+
+# divers
+__pycache__/
+.DS_Store
